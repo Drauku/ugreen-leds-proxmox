@@ -1,0 +1,13 @@
+[Unit]
+Description=Ugreen NAS HDD LED Monitor Bridge
+After=network.target pve-cluster.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ugreen-led-monitor.sh
+Restart=always
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target

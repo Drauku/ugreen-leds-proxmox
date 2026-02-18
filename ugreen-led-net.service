@@ -1,0 +1,16 @@
+[Unit]
+Description=Ugreen Network LED Kernel Trigger
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "modprobe ledtrig-netdev; \
+    echo netdev > /sys/class/leds/netdev/trigger; \
+    echo eth_10g > /sys/class/leds/netdev/device_name; \
+    echo 1 > /sys/class/leds/netdev/link; \
+    echo 1 > /sys/class/leds/netdev/tx; \
+    echo 1 > /sys/class/leds/netdev/rx"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
